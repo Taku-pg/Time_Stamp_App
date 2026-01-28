@@ -58,7 +58,7 @@ public class CalculateWorkingHourSegmentService {
                             Duration.between(startTime, endTime).toMinutes()));
         }
 
-        LocalDateTime nightStart = LocalDateTime.of(startTime.toLocalDate(), LocalTime.of(21, 59));
+        LocalDateTime nightStart = LocalDateTime.of(startTime.toLocalDate(), LocalTime.of(22, 0));
         boolean isOverDate = startTime.toLocalTime().isAfter(endTime.toLocalTime());
 
         long regularDuration = 0;
@@ -68,7 +68,7 @@ public class CalculateWorkingHourSegmentService {
 
         for (SegmentDTO segmentDuration : segmentDurations) {
 
-            if (!isOverDate && segmentDuration.getEndTime().toLocalTime().isBefore(TEN_O_CLOCK)) {
+            if (!isOverDate && !segmentDuration.getEndTime().toLocalTime().isAfter(TEN_O_CLOCK)) {
                 //before night
                 if (regularDuration + segmentDuration.getDuration() <= 480) {
                     //only regular
@@ -79,11 +79,27 @@ public class CalculateWorkingHourSegmentService {
                     regularDuration = 480;
                 }
             } else {
-                if (isOverDate &&
-                        (segmentDuration.getStartTime().toLocalTime().isAfter(TEN_O_CLOCK)
-                                || segmentDuration.getEndTime().toLocalTime().isBefore(FIVE_O_CLOCK))) {
-                    //only night
-                    nightDuration += segmentDuration.getDuration();
+                if(segmentDuration.getEndTime().toLocalTime().isBefore(TEN_O_CLOCK) &&
+                    segmentDuration.getEndTime().toLocalTime().isAfter(FIVE_O_CLOCK)) {
+                    if (regularDuration + segmentDuration.getDuration() <= 480) {
+                        //only regular
+                        regularDuration += segmentDuration.getDuration();
+                    } else {
+                        //regular or overtime
+                        overDuration += segmentDuration.getDuration() - (480 - regularDuration);
+                        regularDuration = 480;
+                    }
+                }else if (!segmentDuration.getEndTime().toLocalTime().isBefore(TEN_O_CLOCK)
+                                || !segmentDuration.getStartTime().toLocalTime().isAfter(FIVE_O_CLOCK)) {
+                    //night or over-night
+                    if (regularDuration + nightDuration + segmentDuration.getDuration() <= 480) {
+                        //only night
+                        nightDuration += segmentDuration.getDuration();
+                    } else {
+                        long nightPart = 480 - regularDuration;
+                        nightDuration += nightPart;
+                        overNightDuration += segmentDuration.getDuration() - nightPart;
+                    }
                 } else {
                     //overlapping
                     //until night: regular or over

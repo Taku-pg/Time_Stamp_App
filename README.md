@@ -36,7 +36,7 @@ This application is designed to facilitate worker's time stamp service.
    
 ```
  url: jdbc:mysql://localhost:3306/timestampdb
- username: timstamp
+ username: timestamp
  password: password
 ```
  

@@ -16,15 +16,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class EmployeeServiceTest {
@@ -35,15 +33,11 @@ public class EmployeeServiceTest {
     @Mock
     private EmployeeMapper employeeMapper;
     @Mock
-    private StatisticsService statisticsService;
-    @Mock
     private StatusService statusService;
     @Mock
     private WorkingHourService workingHourService;
     @Mock
     private PasswordEncoder bcryptPasswordEncoder;
-
-
 
     @InjectMocks
     private EmployeeService employeeService;
@@ -168,6 +162,7 @@ public class EmployeeServiceTest {
         when(employeeRepository.getEmployeeById(1L)).thenReturn(Optional.of(mockEmployee));
         when(statusService.getStatus("Work")).thenReturn(mockStatus);
         when(employeeRepository.save(any(Employee.class))).thenAnswer(i -> i.getArgument(0));
+        doNothing().when(workingHourService).workTimeStamp(mockEmployee);
 
         employeeService.workTimeStamp(1L);
 

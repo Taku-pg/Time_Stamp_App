@@ -11,7 +11,7 @@ public class Status {
     private Long id;
     private String type;
     @OneToMany(mappedBy = "status")
-    private List<Employee> employeeLost;
+    private List<Employee> employeeList;
 
     public Status(){}
 
@@ -31,11 +31,11 @@ public class Status {
         this.type = type;
     }
 
-    public List<Employee> getEmployeeLost() {
-        return employeeLost;
+    public List<Employee> getEmployeeList() {
+        return employeeList;
     }
 
-    public void setEmployeeLost(List<Employee> employeeLost) {
-        this.employeeLost = employeeLost;
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 }

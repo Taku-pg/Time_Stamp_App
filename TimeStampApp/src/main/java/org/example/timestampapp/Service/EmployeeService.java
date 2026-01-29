@@ -45,7 +45,7 @@ public class EmployeeService {
     public EmployeeDTO getEmployeeById(long id) {
         Employee employee = employeeRepository
                 .getEmployeeById(id)
-                .orElseThrow(()->new NoSuchElementException("Employee with id \" + id + \" not found"));
+                .orElseThrow(()->new NoSuchElementException("Employee with id " + id + " not found"));
         return employeeMapper.map(employee);
     }
 

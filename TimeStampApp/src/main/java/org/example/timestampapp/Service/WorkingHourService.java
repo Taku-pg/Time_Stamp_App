@@ -35,12 +35,12 @@ public class WorkingHourService {
         return workingHourMapper.mapFixRecord(workingHourRepository.findWorkingHourWithAutoLeave());
     }
 
-    public List<EmployeeHistoryDTO> getEmployeeHistory(Long employeeId, int year, int month) {
+    public List<EmployeeHistoryDTO> getEmployeeHistory(Long employeeId, int year, int month, int baseSalary) {
         List<EmployeeHistoryDTO> history = new ArrayList<>();
         List<WorkingHour> monthlyRecord=workingHourRepository.findDetailWorkingHourByEmployeeId(employeeId,year,month);
         for (WorkingHour workingHour : monthlyRecord) {
             List<WorkingHourSegment> segments=workingHourSegmentService.getWorkingHourSegment(workingHour.getId());
-            history.add(workingHourMapper.mapEmployeeHistoryDTO(workingHour, segments));
+            history.add(workingHourMapper.mapEmployeeHistoryDTO(workingHour, segments, baseSalary));
         }
         return history;
     }

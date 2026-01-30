@@ -122,7 +122,7 @@ public class WorkingHourMapper {
     }
 
     public EmployeeHistoryDTO mapEmployeeHistoryDTO(WorkingHour workingHour,
-                                                    List<WorkingHourSegment> segments) {
+                                                    List<WorkingHourSegment> segments, int baseSalary) {
         EmployeeHistoryDTO history= new EmployeeHistoryDTO();
         history.setDate(workingHour.getStartTime().toLocalDate());
         history.setStartTime(workingHour.getStartTime().toLocalTime());
@@ -133,7 +133,8 @@ public class WorkingHourMapper {
             Optional<SegmentType> type=segmentTypeRepository.findById(segment.getSegmentType().getId());
             if(type.isPresent()) {
                 double magnification=type.get().getMagnification();
-                sal+=magnification*segment.getDuration();
+                double hour = (double)Math.round((100*segment.getDuration())/60)/100;
+                sal+=magnification*hour*baseSalary;
             }
         }
         history.setCalculatedSalary(sal);

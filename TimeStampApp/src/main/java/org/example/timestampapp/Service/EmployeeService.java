@@ -71,7 +71,9 @@ public class EmployeeService {
     }
 
     public List<EmployeeHistoryDTO> getEmployeeHistory(Long employeeId, int year, int month) {
-        return workingHourService.getEmployeeHistory(employeeId,year,month);
+        Employee emp = employeeRepository.getEmployeeById(employeeId)
+                .orElseThrow(()->new NoSuchElementException("Employee with id " + employeeId + " not found"));
+        return workingHourService.getEmployeeHistory(employeeId,year,month,emp.getSalary());
     }
 
     @Transactional

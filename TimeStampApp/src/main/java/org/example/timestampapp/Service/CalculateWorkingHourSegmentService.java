@@ -20,8 +20,8 @@ import java.util.NoSuchElementException;
 public class CalculateWorkingHourSegmentService {
 
     private final SegmentTypeRepository segmentTypeRepository;
-    private final LocalTime TEN_O_CLOCK = LocalTime.of(21, 59);
-    private final LocalTime FIVE_O_CLOCK = LocalTime.of(5, 1);
+    private final LocalTime TEN_O_CLOCK = LocalTime.of(22, 0);
+    private final LocalTime FIVE_O_CLOCK = LocalTime.of(5, 0);
 
     public CalculateWorkingHourSegmentService(SegmentTypeRepository segmentTypeRepository) {
         this.segmentTypeRepository = segmentTypeRepository;

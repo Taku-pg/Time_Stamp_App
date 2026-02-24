@@ -7,7 +7,6 @@ import org.example.timestampapp.Model.DTO.EmployeeStatisticsDTO;
 import org.example.timestampapp.Model.DTO.FixRecordDTO;
 import org.example.timestampapp.Model.Entity.Department;
 import org.example.timestampapp.Model.Entity.Status;
-import org.example.timestampapp.Model.Entity.WorkingHour;
 import org.example.timestampapp.Service.DepartmentService;
 import org.example.timestampapp.Service.EmployeeService;
 import org.example.timestampapp.Service.StatusService;
@@ -111,7 +110,6 @@ public class AdminController {
     public String modifyEmployee(@Valid @ModelAttribute EmployeeDTO employee,
                                  BindingResult bindingResult,
                                  Model model) {
-        System.out.println(employee);
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
             List<String> departments=departmentService.getAllDepartmentName();
@@ -146,7 +144,6 @@ public class AdminController {
 
     @PostMapping("/delete-employee")
     public String deleteEmployee(@RequestParam(name = "employeeId") Long employeeId) {
-        System.out.println(employeeId);
         employeeService.deleteEmployee(employeeId);
         return "admin";
     }

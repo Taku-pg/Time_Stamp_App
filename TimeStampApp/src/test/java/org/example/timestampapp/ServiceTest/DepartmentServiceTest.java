@@ -1,4 +1,4 @@
-package ServiceTest;
+package org.example.timestampapp.ServiceTest;
 
 import org.example.timestampapp.Model.DTO.DepartmentStatisticsDTO;
 import org.example.timestampapp.Model.Entity.Department;

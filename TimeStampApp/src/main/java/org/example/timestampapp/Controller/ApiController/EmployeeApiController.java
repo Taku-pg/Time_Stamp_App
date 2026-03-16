@@ -38,7 +38,6 @@ public class EmployeeApiController {
                                                                               @PathVariable int year,
                                                                               @PathVariable int month) {
         EmployeeStatisticsDTO statistics=employeeService.getEmployeeWorkingStatistics(id,year,month);
-        System.out.println("from api "+statistics);
         if(statistics==null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

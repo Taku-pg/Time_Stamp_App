@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,9 +24,6 @@ public class DepartmentApiController {
     @GetMapping("/")
     public ResponseEntity<List<String>> getDepartmentName() {
         List<String> departmentNames = departmentService.getAllDepartmentName();
-        for (String departmentName : departmentNames) {
-            System.out.println(departmentName);
-        }
         return ResponseEntity.ok(departmentNames);
     }
 
@@ -36,7 +32,6 @@ public class DepartmentApiController {
                                                                               @PathVariable int year,
                                                                               @PathVariable int month) {
         DepartmentStatisticsDTO statistics=departmentService.getDeptStatistics(name,year,month);
-        System.out.println("from api "+statistics);
         if(statistics==null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

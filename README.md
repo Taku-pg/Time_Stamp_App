@@ -1,10 +1,18 @@
 # Time stamp application
-This is a sample project using spring framework for learning purpose.
 
-This application is designed to facilitate worker's time stamp service.
+## Overview
+This application is designed to facilitate worker's working time stamp service which records their work/break hours and calculate thier salary based on their hourly rate.
+
+It also provides functionality to visualise employees and departments working hour statistics in chart.
 
 ## Features
+#### This application supports following features:
+- Logging
+- Authentication
+- Role-based authorization
+- Error handling & Validation
 
+## User functionalities
 ### Administrator: 
 - Add/Delete employee
 - Modify employees’ information (salary, name, etc.)
@@ -18,13 +26,17 @@ This application is designed to facilitate worker's time stamp service.
 -	View working time graph in chart (e.g. working hours of normal shift/overtime/night shift etc.)
 
 ## Teck
-- Java 17
+- Java 25
 - Spring Boot 3.5.0
 - Spring Security
 - Spring Data JPA
 - Spring Web
 - Tymeleaf
 - Mysql
+- Mockito
+
+## Database Design
+<img width="990" height="491" alt="Image" src="https://github.com/user-attachments/assets/ff9741d9-7835-45f1-bece-9222cfc6694c" />
 
 ## Setup
 ### Data base setup
@@ -40,7 +52,7 @@ This application is designed to facilitate worker's time stamp service.
  password: password
 ```
  
-3. Create database on local host
+3. Create database and user on local host
    
 ```
  CREATE DATABASE timestampdb;  
@@ -49,7 +61,7 @@ This application is designed to facilitate worker's time stamp service.
  FLUSH PRIVILEGES;
 ```
 
-4. Initialaize schema and data
+4. Initialaize database schema and data
 
    You can use provided sql files
    
@@ -80,4 +92,4 @@ This application is designed to facilitate worker's time stamp service.
 | --- | --- |
 | employee1@gmail.com | EmployeeNo1 |
 | employee2@gmail.com | EmployeeNo2 |
-| employee3@gmail.com | EmployeeNo3 || 
+| employee3@gmail.com | EmployeeNo3 |

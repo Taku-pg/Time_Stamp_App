@@ -17,9 +17,15 @@ It also provides functionality to visualise employees and departments working ho
 - Add/Delete employee
 - Search employee by employee's id
 - Modify employees’ information (salary, name, etc.)
+- Modify employee's auto-checkout working hour
 -	View monthly working hour statistics of employee (how many hours they work in overtime etc.).
 -	View department-level working hours statistics
 -	Both statistics are searchable by month
+
+>[!NOTE]
+>The system automatically make leave time stamp at 5am which prevents such situation that employee forgets to push leave button.
+>
+>In case of such stamp, system marks as auto-leave. Admin reveiews those stamps so that admin can correct actual leaving time.
 
 ### Employee:
 -	Timestamp work/break/leave
@@ -53,7 +59,7 @@ Selected screen from the application UI
 <img width="501" height="217" alt="Image" src="https://github.com/user-attachments/assets/a29440e5-d18d-4a24-a95a-91d9d2a5db11" />
 
 ## Setup
-### Data base setup
+### Database setup
 1. Clone this repository
    
 `git clone https://github.com/Taku-pg/time_stamp_app.git`

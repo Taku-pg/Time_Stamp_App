@@ -15,15 +15,18 @@ It also provides functionality to visualise employees and departments working ho
 ## User functionalities
 ### Administrator: 
 - Add/Delete employee
+- Search employee by employee's id
 - Modify employees’ information (salary, name, etc.)
 -	View monthly working hour statistics of employee (how many hours they work in overtime etc.).
--	View department-level working hours statistics 
+-	View department-level working hours statistics
+-	Both statistics are searchable by month
 
 ### Employee:
 -	Timestamp work/break/leave
 -	View personal information and update password
 -	View working history and calculated salary (monthly base)
 -	View working time graph in chart (e.g. working hours of normal shift/overtime/night shift etc.)
+-	Both history and graph are searchable by month 
 
 ## Teck
 - Java 25
@@ -35,8 +38,19 @@ It also provides functionality to visualise employees and departments working ho
 - Mysql
 - Mockito
 
-## Database Design
+## Database Schema
 <img width="990" height="491" alt="Image" src="https://github.com/user-attachments/assets/ff9741d9-7835-45f1-bece-9222cfc6694c" />
+
+## User Interface Design
+Selected screen from the application UI
+### Employee Main Page
+<img width="313" height="218" alt="Image" src="https://github.com/user-attachments/assets/a47523dd-6484-4ff1-9d30-eb7a5c113c2e" />
+
+### Admin Main Page
+<img width="509" height="197" alt="Image" src="https://github.com/user-attachments/assets/76b7fa9c-60d0-4d7a-8d1b-b893ea44f3c2" />
+
+### Monthly Statistics
+<img width="501" height="217" alt="Image" src="https://github.com/user-attachments/assets/a29440e5-d18d-4a24-a95a-91d9d2a5db11" />
 
 ## Setup
 ### Data base setup
